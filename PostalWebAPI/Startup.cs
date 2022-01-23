@@ -10,6 +10,8 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using PostalWebAPI.Contracts;
 using PostalWebAPI.Models;
+using PostalWebAPI.Repositories;
+using PostalWebAPI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +40,9 @@ namespace PostalWebAPI
 
             services.Configure<PostalDbSettings>(Configuration.GetSection(nameof(PostalDbSettings)));
             services.AddSingleton<IPostalDbSettings>(sp => sp.GetRequiredService<IOptions<PostalDbSettings>>().Value);
+
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
