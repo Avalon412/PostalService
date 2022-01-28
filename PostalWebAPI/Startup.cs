@@ -12,6 +12,8 @@ using PostalWebAPI.Contracts;
 using PostalWebAPI.Models;
 using PostalWebAPI.Repositories;
 using PostalWebAPI.Services;
+using PostalWebAPI.Extentions;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,6 +56,8 @@ namespace PostalWebAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PostalWebAPI v1"));
             }
+
+            app.ConfigureExceptionHandler(Log.Logger);
 
             app.UseHttpsRedirection();
 
