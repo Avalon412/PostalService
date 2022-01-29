@@ -14,7 +14,7 @@ namespace PostalService.DAL.Repositories
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
-            _users = database.GetCollection<UserModel>(settings.PostalCollectionName);
+            _users = database.GetCollection<UserModel>(PostalCollections.Users.ToString());
         }
 
         public async Task<UserModel> Create(UserModel user)

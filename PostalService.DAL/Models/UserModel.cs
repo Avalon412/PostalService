@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System.Collections.Generic;
 
 namespace PostalService.DAL.Models
 {
@@ -26,5 +27,8 @@ namespace PostalService.DAL.Models
 
         [BsonElement("address")]
         public string Address { get; set; }
+
+        [BsonIgnore]
+        public List<PackageModel> Packages { get; set; }
     }
 }
