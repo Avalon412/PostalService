@@ -4,6 +4,31 @@
         <name>PostalWebAPI</name>
     </assembly>
     <members>
+        <member name="M:PostalWebAPI.Controllers.PackageController.GetUserPackages(System.Int32)">
+            <summary>
+            Gets all packages for specified user
+            </summary>
+        </member>
+        <member name="M:PostalWebAPI.Controllers.PackageController.GetPackage(System.Int32)">
+            <summary>
+            Gets package by Id
+            </summary>
+        </member>
+        <member name="M:PostalWebAPI.Controllers.PackageController.CreatePackage(PostalService.DAL.Models.PackageModel)">
+            <summary>
+            Creates new package
+            </summary>
+        </member>
+        <member name="M:PostalWebAPI.Controllers.PackageController.UpdatePackage(System.Int32,PostalService.DAL.Models.PackageModel)">
+            <summary>
+            Updates existing package info
+            </summary>
+        </member>
+        <member name="M:PostalWebAPI.Controllers.PackageController.DeletePackage(System.Int32)">
+            <summary>
+            Deletes existing package
+            </summary>
+        </member>
         <member name="M:PostalWebAPI.Controllers.UserController.Get">
             <summary>
             Get all users

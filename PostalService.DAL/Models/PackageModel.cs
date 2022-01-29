@@ -14,7 +14,7 @@ namespace PostalService.DAL.Models
         [BsonElement("weight")]
         public int Weight { get; set; }
         [BsonElement("dateOfDeparture")]
-        public DateTime DateOfDeparture { get; set; }
+        public string DateOfDeparture { get; set; }
         [BsonElement("sender")]
         public string Sender { get; set; }
         [BsonElement("cityOfDeparture")]

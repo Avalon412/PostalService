@@ -9,12 +9,15 @@ namespace PostalService.DAL.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly IMongoCollection<UserModel> _users;
+        private readonly IMongoCollection<PackageModel> _packages;
 
         public UserRepository(IPostalDbSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
+
             _users = database.GetCollection<UserModel>(PostalCollections.Users.ToString());
+            _packages = database.GetCollection<PackageModel>(PostalCollections.Packages.ToString());
         }
 
         public async Task<UserModel> Create(UserModel user)
@@ -30,7 +33,9 @@ namespace PostalService.DAL.Repositories
 
         public async Task<UserModel> Get(int id)
         {
-            return await _users.Find(user => user.Id == id).FirstOrDefaultAsync();
+            var user = await _users.Find(user => user.Id == id).FirstOrDefaultAsync();
+            user.Packages = await _packages.Find(p => p.UserId == user.Id).ToListAsync();
+            return user;
         }
 
         public async Task Remove(int id)
