@@ -5,19 +5,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
-using PostalWebAPI.Contracts;
-using PostalWebAPI.Models;
-using PostalWebAPI.Repositories;
-using PostalWebAPI.Services;
+using PostalService.DAL.Contracts;
+using PostalService.DAL.Models;
+using PostalService.DAL.Repositories;
+using PostalService.Services.Contracts;
+using PostalService.Services.Services;
 using PostalWebAPI.Extentions;
 using Serilog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace PostalWebAPI
 {
@@ -38,6 +35,9 @@ namespace PostalWebAPI
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PostalWebAPI", Version = "v1" });
+
+                var annotationsFile = Path.Combine(System.AppContext.BaseDirectory, "swagger.annotations.xml");
+                c.IncludeXmlComments(annotationsFile);
             });
 
             services.Configure<PostalDbSettings>(Configuration.GetSection(nameof(PostalDbSettings)));

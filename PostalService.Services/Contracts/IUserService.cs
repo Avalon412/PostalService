@@ -1,10 +1,8 @@
-﻿using PostalWebAPI.Models;
-using System;
+﻿using PostalService.DAL.Models;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
-namespace PostalWebAPI.Contracts
+namespace PostalService.Services.Contracts
 {
     public interface IUserService
     {

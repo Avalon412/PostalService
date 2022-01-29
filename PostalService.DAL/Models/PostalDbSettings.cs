@@ -1,10 +1,6 @@
-﻿using PostalWebAPI.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using PostalService.DAL.Contracts;
 
-namespace PostalWebAPI.Models
+namespace PostalService.DAL.Models
 {
     public class PostalDbSettings : IPostalDbSettings
     {

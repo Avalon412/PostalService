@@ -1,11 +1,10 @@
-﻿using PostalWebAPI.Contracts;
-using PostalWebAPI.Models;
-using System;
+﻿using PostalService.DAL.Contracts;
+using PostalService.DAL.Models;
+using PostalService.Services.Contracts;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
-namespace PostalWebAPI.Services
+namespace PostalService.Services.Services
 {
     public class UserService : IUserService
     {

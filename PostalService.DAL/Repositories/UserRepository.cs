@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using MongoDB.Driver;
-using PostalWebAPI.Contracts;
-using PostalWebAPI.Models;
+using PostalService.DAL.Contracts;
+using PostalService.DAL.Models;
 
-namespace PostalWebAPI.Repositories
+namespace PostalService.DAL.Repositories
 {
     public class UserRepository : IUserRepository
     {

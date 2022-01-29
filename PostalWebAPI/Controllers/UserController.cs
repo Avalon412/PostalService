@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PostalWebAPI.Contracts;
-using PostalWebAPI.Models;
-using System;
+using PostalService.DAL.Models;
+using PostalService.Services.Contracts;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace PostalWebAPI.Controllers
@@ -19,9 +17,16 @@ namespace PostalWebAPI.Controllers
             _userService = userService;
         }
 
+        /// <summary>
+        /// Get all users
+        /// </summary>
         [HttpGet]
         public async Task<ActionResult<List<UserModel>>> Get() => await _userService.Get();
 
+        /// <summary>
+        /// Get users by Id
+        /// </summary>
+        /// <param name="id">User Id</param>
         [HttpGet("{id}")]
         public async Task<ActionResult<UserModel>> Get(int id)
         {
@@ -35,6 +40,10 @@ namespace PostalWebAPI.Controllers
             return user;
         }
 
+        /// <summary>
+        /// Create new user
+        /// </summary>
+        /// <param name="user">JSON representation of a user</param>
         [HttpPost]
         public async Task<IActionResult> Post(UserModel user)
         {
@@ -43,6 +52,11 @@ namespace PostalWebAPI.Controllers
             return CreatedAtAction(nameof(Post), new { id = user.Id }, user);
         }
 
+        /// <summary>
+        /// Edit existing user
+        /// </summary>
+        /// <param name="id">User Id</param>
+        /// <param name="user">JSON representation of a user</param>
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, UserModel user)
         {
@@ -58,6 +72,10 @@ namespace PostalWebAPI.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Delete user by Id
+        /// </summary>
+        /// <param name="id">User Id</param>
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

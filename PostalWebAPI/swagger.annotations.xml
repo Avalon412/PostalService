@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PostalWebAPI</name>
+    </assembly>
+    <members>
+        <member name="M:PostalWebAPI.Controllers.UserController.Get">
+            <summary>
+            Get all users
+            </summary>
+        </member>
+        <member name="M:PostalWebAPI.Controllers.UserController.Get(System.Int32)">
+            <summary>
+            Get users by Id
+            </summary>
+            <param name="id">User Id</param>
+        </member>
+        <member name="M:PostalWebAPI.Controllers.UserController.Post(PostalService.DAL.Models.UserModel)">
+            <summary>
+            Create new user
+            </summary>
+            <param name="user">JSON representation of a user</param>
+        </member>
+        <member name="M:PostalWebAPI.Controllers.UserController.Update(System.Int32,PostalService.DAL.Models.UserModel)">
+            <summary>
+            Edit existing user
+            </summary>
+            <param name="id">User Id</param>
+            <param name="user">JSON representation of a user</param>
+        </member>
+        <member name="M:PostalWebAPI.Controllers.UserController.Delete(System.Int32)">
+            <summary>
+            Delete user by Id
+            </summary>
+            <param name="id">User Id</param>
+        </member>
+    </members>
+</doc>

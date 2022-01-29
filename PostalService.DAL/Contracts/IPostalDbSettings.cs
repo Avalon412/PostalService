@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace PostalWebAPI.Contracts
+﻿namespace PostalService.DAL.Contracts
 {
     public interface IPostalDbSettings
     {

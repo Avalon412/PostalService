@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace PostalWebAPI.Models
+namespace PostalService.DAL.Models
 {
     public class UserModel
     {
