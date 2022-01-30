@@ -8,6 +8,7 @@ namespace PostalService.Services.Contracts
     {
         Task<List<PackageModel>> GetUserPackages(int userId);
         Task<PackageModel> GetPackage(int id);
+        Task<List<PackageModel>> GetPackagesByStatus(bool status);
         Task<PackageModel> Create(PackageModel package);
         Task Update(int id, PackageModel package);
         Task Delete(int id);

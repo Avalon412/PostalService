@@ -31,6 +31,11 @@ namespace PostalService.DAL.Repositories
             return await _packages.Find(u => u.UserId == userId).ToListAsync();
         }
 
+        public async Task<List<PackageModel>> GetPackagesByStatus(bool status)
+        {
+            return await _packages.Find(p => p.IsReceived == status).ToListAsync();
+        }
+
         public async Task<PackageModel> Create(PackageModel package)
         {
             await _packages.InsertOneAsync(package);

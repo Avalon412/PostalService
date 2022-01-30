@@ -27,6 +27,12 @@ namespace PostalService.Services.Services
         {
             return await _packageRepository.GetUserPackages(userId);
         }
+
+        public async Task<List<PackageModel>> GetPackagesByStatus(bool status)
+        {
+            return await _packageRepository.GetPackagesByStatus(status);
+        }
+
         public async Task<PackageModel> Create(PackageModel package)
         {
             return await _packageRepository.Create(package);

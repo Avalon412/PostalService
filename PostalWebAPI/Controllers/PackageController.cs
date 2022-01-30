@@ -36,6 +36,22 @@ namespace PostalWebAPI.Controllers
         }
 
         /// <summary>
+        /// Gets the list of sended or unsended packages
+        /// </summary>
+        [HttpGet]
+        public async Task<ActionResult<List<PackageModel>>> GetPackagesByStatus([FromQuery]bool status)
+        {
+            var packages = await _packageService.GetPackagesByStatus(status);
+
+            if (!packages.Any())
+            {
+                return NotFound();
+            }
+
+            return packages;
+        }
+
+        /// <summary>
         /// Gets package by Id
         /// </summary>
         [HttpGet("packages/{packageId}")]

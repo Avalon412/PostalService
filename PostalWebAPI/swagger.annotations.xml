@@ -9,6 +9,11 @@
             Gets all packages for specified user
             </summary>
         </member>
+        <member name="M:PostalWebAPI.Controllers.PackageController.GetPackagesByStatus(System.Boolean)">
+            <summary>
+            Gets the list of sended or unsended packages
+            </summary>
+        </member>
         <member name="M:PostalWebAPI.Controllers.PackageController.GetPackage(System.Int32)">
             <summary>
             Gets package by Id
