@@ -73,6 +73,11 @@ namespace PostalWebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreatePackage(PackageModel package)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             await _packageService.Create(package);
 
             return CreatedAtAction(nameof(CreatePackage), new { id = package.Id }, package);
@@ -84,6 +89,11 @@ namespace PostalWebAPI.Controllers
         [HttpPut("{packageId}")]
         public async Task<IActionResult> UpdatePackage(int packageId, PackageModel package)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             var existingPackage = await _packageService.GetPackage(packageId);
 
             if (existingPackage is null)

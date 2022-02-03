@@ -47,6 +47,11 @@ namespace PostalWebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(UserModel user)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             await _userService.Create(user);
 
             return CreatedAtAction(nameof(Post), new { id = user.Id }, user);
@@ -60,6 +65,11 @@ namespace PostalWebAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, UserModel user)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             var existingUser = await _userService.Get(id);
 
             if (existingUser is null)
