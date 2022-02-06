@@ -61,6 +61,8 @@ namespace PostalWebAPI
 
             app.ConfigureExceptionHandler(Log.Logger);
 
+            app.UseHeaderLogging(Log.Logger);
+
             app.UseHttpsRedirection();
 
             app.UseRouting();

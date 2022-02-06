@@ -33,5 +33,10 @@ namespace PostalWebAPI.Extentions
                 });
             });
         }
+
+        public static IApplicationBuilder UseHeaderLogging(this IApplicationBuilder builder, ILogger logger)
+        {
+            return builder.UseMiddleware<HeaderLoggingMiddleware>(logger);
+        }
     }
 }
