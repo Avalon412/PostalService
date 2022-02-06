@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using PostalService.DAL.Models;
 using PostalService.Services.Contracts;
+using PostalWebAPI.DTOs;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,24 +13,39 @@ namespace PostalWebAPI.Controllers
     public class UserController : Controller
     {
         private readonly IUserService _userService;
+        private readonly IMapper _mapper;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IMapper mapper)
         {
             _userService = userService;
+            _mapper = mapper;
+
+            var mapperConfig = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<UserModel, UserDTO>();
+            });
+            _mapper = mapperConfig.CreateMapper();
         }
 
         /// <summary>
         /// Get all users
         /// </summary>
         [HttpGet]
-        public async Task<ActionResult<List<UserModel>>> Get() => await _userService.Get();
+        public async Task<ActionResult<List<UserDTO>>> Get()
+        {
+            var users = await _userService.Get();
+
+            var usersDto = _mapper.Map<List<UserModel>, List<UserDTO>>(users);
+
+            return usersDto;
+        }
 
         /// <summary>
         /// Get users by Id
         /// </summary>
         /// <param name="id">User Id</param>
         [HttpGet("{id}")]
-        public async Task<ActionResult<UserModel>> Get(int id)
+        public async Task<ActionResult<UserDTO>> Get(int id)
         {
             var user = await _userService.Get(id);
 
@@ -37,7 +54,9 @@ namespace PostalWebAPI.Controllers
                 return NotFound();
             }
 
-            return user;
+            var userDto = _mapper.Map<UserDTO>(user);
+
+            return userDto;
         }
 
         /// <summary>

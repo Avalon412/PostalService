@@ -30,14 +30,14 @@ namespace PostalWebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PostalWebAPI", Version = "v1" });
 
                 var annotationsFile = Path.Combine(System.AppContext.BaseDirectory, "swagger.annotations.xml");
-                c.IncludeXmlComments(annotationsFile);
+                //c.IncludeXmlComments(annotationsFile);
             });
 
             services.Configure<PostalDbSettings>(Configuration.GetSection(nameof(PostalDbSettings)));
