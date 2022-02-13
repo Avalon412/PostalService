@@ -19,12 +19,6 @@ namespace PostalWebAPI.Controllers
         {
             _userService = userService;
             _mapper = mapper;
-
-            var mapperConfig = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<UserModel, UserDTO>();
-            });
-            _mapper = mapperConfig.CreateMapper();
         }
 
         /// <summary>

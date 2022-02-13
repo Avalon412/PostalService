@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,6 +14,7 @@ using PostalService.DAL.Repositories;
 using PostalService.Services.Contracts;
 using PostalService.Services.Services;
 using PostalWebAPI.Extentions;
+using PostalWebAPI.MapperProfiles;
 using Serilog;
 using System.IO;
 
@@ -30,7 +32,12 @@ namespace PostalWebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(Startup));
+            var mapperCfg = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<UserProfile>();
+            });
+            IMapper mapper = mapperCfg.CreateMapper();
+            services.AddSingleton(mapper);
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
