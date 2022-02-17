@@ -30,14 +30,14 @@ namespace PostalService.Services.Services
             return await _userRepository.Get(id);
         }
 
-        public async Task Remove(int id)
+        public async Task Remove(UserModel user)
         {
-            await _userRepository.Remove(id);
+            await _userRepository.Remove(user);
         }
 
-        public async Task Update(int id, UserModel user)
+        public async Task Update(UserModel user)
         {
-            await _userRepository.Update(id, user);
+            await _userRepository.Update(user);
         }
     }
 }

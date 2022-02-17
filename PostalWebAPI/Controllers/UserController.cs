@@ -90,7 +90,7 @@ namespace PostalWebAPI.Controllers
                 return NotFound();
             }
 
-            await _userService.Update(id, user);
+            await _userService.Update(user);
 
             return NoContent();
         }
@@ -109,7 +109,7 @@ namespace PostalWebAPI.Controllers
                 return NotFound();
             }
 
-            await _userService.Remove(id);
+            await _userService.Remove(existingUser);
 
             return NoContent();
         }

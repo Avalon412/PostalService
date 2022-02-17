@@ -38,13 +38,13 @@ namespace PostalService.Services.Services
             return await _packageRepository.Create(package);
         }
 
-        public async Task Update(int id, PackageModel package)
+        public async Task Update(PackageModel package)
         {
-            await _packageRepository.Update(id, package);
+            await _packageRepository.Update(package);
         }
-        public async Task Delete(int id)
+        public async Task Delete(PackageModel package)
         {
-            await _packageRepository.Delete(id);
+            await _packageRepository.Delete(package);
         }
     }
 }

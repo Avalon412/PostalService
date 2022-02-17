@@ -101,7 +101,7 @@ namespace PostalWebAPI.Controllers
                 return NotFound();
             }
 
-            await _packageService.Update(packageId, package);
+            await _packageService.Update(package);
 
             return NoContent();
         }
@@ -119,7 +119,7 @@ namespace PostalWebAPI.Controllers
                 return NotFound();
             }
 
-            await _packageService.Delete(packageId);
+            await _packageService.Delete(existingPackage);
 
             return NoContent();
         }

@@ -13,7 +13,7 @@ namespace PostalService.DAL.Contracts
         Task<List<PackageModel>> GetPackagesByStatus(bool status);
         Task<PackageModel> GetPackage(int id);
         Task<PackageModel> Create(PackageModel package);
-        Task Update(int id, PackageModel package);
-        Task Delete(int id);
+        Task Update(PackageModel package);
+        Task Delete(PackageModel package);
     }
 }

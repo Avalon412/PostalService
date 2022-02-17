@@ -1,6 +1,6 @@
-﻿using MongoDB.Driver;
-using PostalService.DAL.Contracts;
+﻿using PostalService.DAL.Contracts;
 using PostalService.DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,45 +11,45 @@ namespace PostalService.DAL.Repositories
 {
     public class PackageRepository : IPackageRepository
     {
-        private readonly IMongoCollection<PackageModel> _packages;
+        private readonly PostalDbContext _dbContext;
 
-        public PackageRepository(IPostalDbSettings settings)
+        public PackageRepository(PostalDbContext context)
         {
-            var client = new MongoClient(settings.ConnectionString);
-            var database = client.GetDatabase(settings.DatabaseName);
-
-            _packages = database.GetCollection<PackageModel>(PostalCollections.Packages.ToString());
+            _dbContext = context;
         }
 
         public async Task<PackageModel> GetPackage(int id)
         {
-            return await _packages.Find(p => p.Id == id).FirstOrDefaultAsync();
+            return await _dbContext.Packages.FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<List<PackageModel>> GetUserPackages(int userId)
         {
-            return await _packages.Find(u => u.UserId == userId).ToListAsync();
+            return await _dbContext.Packages.Where(p => p.UserId == userId).ToListAsync();
         }
 
         public async Task<List<PackageModel>> GetPackagesByStatus(bool status)
         {
-            return await _packages.Find(p => p.IsReceived == status).ToListAsync();
+            return await _dbContext.Packages.Where(p => p.IsReceived == status).ToListAsync();
         }
 
         public async Task<PackageModel> Create(PackageModel package)
         {
-            await _packages.InsertOneAsync(package);
+            _dbContext.Packages.Add(package);
+            await _dbContext.SaveChangesAsync();
             return package;
         }
 
-        public async Task Update(int id, PackageModel package)
+        public async Task Update(PackageModel package)
         {
-            await _packages.ReplaceOneAsync(p => p.Id == id, package);
+            _dbContext.Packages.Update(package);
+            await _dbContext.SaveChangesAsync();
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(PackageModel package)
         {
-            await _packages.DeleteOneAsync(p => p.Id == id);
+            _dbContext.Packages.Remove(package);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,6 +33,9 @@ namespace PostalWebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<PostalDbContext>(options => 
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             var mapperCfg = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<UserProfile>();
@@ -46,10 +50,6 @@ namespace PostalWebAPI
                 var annotationsFile = Path.Combine(System.AppContext.BaseDirectory, "swagger.annotations.xml");
                 //c.IncludeXmlComments(annotationsFile);
             });
-
-            services.Configure<PostalDbSettings>(Configuration.GetSection(nameof(PostalDbSettings)));
-            services.AddSingleton<IPostalDbSettings>(sp => sp.GetRequiredService<IOptions<PostalDbSettings>>().Value);
-
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IPackageRepository, PackageRepository>();

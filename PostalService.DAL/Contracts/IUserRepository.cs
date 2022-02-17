@@ -9,7 +9,7 @@ namespace PostalService.DAL.Contracts
         Task<List<UserModel>> Get();
         Task<UserModel> Get(int id);
         Task<UserModel> Create(UserModel user);
-        Task Update(int id, UserModel user);
-        Task Remove(int id);
+        Task Update(UserModel user);
+        Task Remove(UserModel user);
     }
 }
