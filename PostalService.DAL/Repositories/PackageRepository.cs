@@ -20,7 +20,7 @@ namespace PostalService.DAL.Repositories
 
         public async Task<PackageModel> GetPackage(int id)
         {
-            return await _dbContext.Packages.FirstOrDefaultAsync(p => p.Id == id);
+            return await _dbContext.Packages.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<List<PackageModel>> GetUserPackages(int userId)

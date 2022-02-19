@@ -29,7 +29,7 @@ namespace PostalService.DAL.Repositories
 
         public async Task<UserModel> Get(int id)
         {
-            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == id);
+            var user = await _dbContext.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Id == id);
             return user;
         }
 
