@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PostalService.DAL", "Postal
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PostalDB", "PostalDB\PostalDB.sqlproj", "{37F7E29A-539B-4E31-9F36-16A39AAA7F76}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostalService.Tests", "PostalService.Tests\PostalService.Tests.csproj", "{AEF6AFE2-6BC1-4318-B0A9-DB875B922470}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{37F7E29A-539B-4E31-9F36-16A39AAA7F76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37F7E29A-539B-4E31-9F36-16A39AAA7F76}.Release|Any CPU.Build.0 = Release|Any CPU
 		{37F7E29A-539B-4E31-9F36-16A39AAA7F76}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{AEF6AFE2-6BC1-4318-B0A9-DB875B922470}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEF6AFE2-6BC1-4318-B0A9-DB875B922470}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEF6AFE2-6BC1-4318-B0A9-DB875B922470}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEF6AFE2-6BC1-4318-B0A9-DB875B922470}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
