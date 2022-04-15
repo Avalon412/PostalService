@@ -59,7 +59,7 @@ namespace PostalService.Tests
             var testedObject = CreateTestedObject();
             var expectedResult = package;
             //Act
-            var result = testedObject.Create(package);
+            var result = testedObject.Create(package).GetAwaiter().GetResult();
             //Assert
             Assert.Same(expectedResult, result);
         }
@@ -74,7 +74,7 @@ namespace PostalService.Tests
 
             var testedObject = CreateTestedObject();
             //Act
-            var result = testedObject.Create(package);
+            var result = testedObject.Create(package).GetAwaiter().GetResult();
             //Assert
             Assert.Null(result);
         }
