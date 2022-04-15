@@ -16,12 +16,14 @@ namespace PostalService.Services.Services
         private readonly IPackageRepository _packageRepository;
         private readonly ILogger _logger;
         private readonly IValidator _validator;
+        private readonly IBusinessLogick _businessLogick;
 
-        public PackageService(IPackageRepository packageRepository, ILogger logger, IValidator validator)
+        public PackageService(IPackageRepository packageRepository, ILogger logger, IValidator validator, IBusinessLogick businessLogick)
         {
             _packageRepository = packageRepository;
             _logger = logger;
             _validator = validator;
+            _businessLogick = businessLogick;
         }
 
         public async Task<PackageModel> GetPackage(int id)
@@ -48,8 +50,12 @@ namespace PostalService.Services.Services
 
             if (_validator.Validate(package, _logger))
             {
-                var bl = new BusinessLogick(package);
-                bl.DoSomeAction();
+                _businessLogick.DoSomeAction();
+                return package;
+            }
+            else
+            {
+                return null;
             }
 
             var listOfDuplicatedPackaged = new List<PackageModel> { package, package, package, package, package, package };
