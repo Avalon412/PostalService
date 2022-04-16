@@ -10,6 +10,7 @@ namespace PostalService.Services.Contracts
 {
     public interface IValidator
     {
+        bool IsRequired { get; set; }
         bool Validate(PackageModel parameter, ILogger logger);
     }
 }

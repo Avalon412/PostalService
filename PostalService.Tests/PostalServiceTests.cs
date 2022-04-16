@@ -52,6 +52,7 @@ namespace PostalService.Tests
         {
             //Arange
             PackageModel package = new PackageModel();
+            _validator.IsRequired = true;
 
             A.CallTo(() => _validator.Validate(package, _logger)).Returns(true);
             A.CallTo(() => _businessLogick.DoSomeAction()).DoesNothing();
@@ -69,6 +70,7 @@ namespace PostalService.Tests
         {
             //Arange
             PackageModel package = new PackageModel();
+            _validator.IsRequired = true;
 
             A.CallTo(() => _validator.Validate(package, _logger)).Returns(false);
 

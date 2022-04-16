@@ -48,14 +48,17 @@ namespace PostalService.Services.Services
                 throw new NullReferenceException();
             }
 
-            if (_validator.Validate(package, _logger))
+            if (_validator.IsRequired)
             {
-                _businessLogick.DoSomeAction();
-                return package;
-            }
-            else
-            {
-                return null;
+                if (_validator.Validate(package, _logger))
+                {
+                    _businessLogick.DoSomeAction();
+                    return package;
+                }
+                else
+                {
+                    return null;
+                }
             }
 
             var listOfDuplicatedPackaged = new List<PackageModel> { package, package, package, package, package, package };

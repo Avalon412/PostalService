@@ -11,6 +11,8 @@ namespace PostalService.Services.Common
 {
     public class Validator : IValidator
     {
+        public bool IsRequired { get; set; }
+
         public bool Validate(PackageModel package, ILogger logger)
         {
             if (package.Id < 0)
